@@ -46,10 +46,8 @@ function CategoryScreen({ navigation}){
                     onPress={pressHandler}
                     />
                     );      
-       
     }
     
-
     return <FlatList
                 //data={CATEGORIES}
                 data={arr}

@@ -45,11 +45,12 @@ function SingleSubCategory({route, navigation}){
         const item = dataItem.item;
         const renderhandlerProps = {
             id:item.id,
-            title:item.cooked,
+            title:item.cooked.replace(/<\/?[^>]+(>|$)/g, ""),
             image:item.image,
             anonymous:item.anonymous,
 
         };
+        console.log(dataItem);
            return(
                <DiscussionsList {...renderhandlerProps} />   
            )
