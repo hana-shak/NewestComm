@@ -30,21 +30,21 @@ function StartDiscussion({route, navigation}){
                 return{ ...currentInputValue,[inputIdentifier]:enteredValue  }
         });
     };
-
-    const cats = useQuery("categories", () =>
-    axios.get(
-      "http://143.244.183.12:4200/categories.json"
-    ).then((res) => res.data)
-  );
-    
-    
-    //console.log('5555cats.data.category_list.categories',cats.data.category_list['categories'])
-    //for DropDown Lists
     const [catOpen, setCatOpen] = useState(false);
     const [subOpen, setSubOpen] = useState(false); 
     const [value, setValue] = useState(null);
     const [items, setItems] = useState(setItemHandler);
-    
+
+    // const { status, data, error, isFetching } = useQuery('cat', async()=>{
+    //   const cats = await axios.get("http://143.244.183.12:4200/categories.json").then((res) => res.data);
+    //   return cats;
+    // }); 
+   
+  //   const cats = useQuery("categories", () =>
+  //   axios.get(
+  //     "http://143.244.183.12:4200/categories.json"
+  //   ).then((res) => res.data)
+  // );
     
     const subsCategoryval = SUBCATEGORIES.filter((subItem)=>{ 
             return subItem.categoryId.indexOf(value) >= 0 ;  

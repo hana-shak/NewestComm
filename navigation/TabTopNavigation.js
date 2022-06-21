@@ -11,7 +11,7 @@ const Tab = createMaterialTopTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator style={styles.Tab}>
-      <Tab.Screen name="Home" component={StackNavigation} />
+      <Tab.Screen name="Home" component={StackNavigation}  />
       <Tab.Screen name="Profile" component={Profile} />
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Discussion" component={StartDiscussion} />

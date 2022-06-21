@@ -16,51 +16,11 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      
+    <QueryClientProvider client={queryClient}>      
     <StatusBar style='dark' />
     <NavigationContainer >
       <MyTabs />
-      {/* <Stack.Navigator
-          screenOptions={
-            {
-              headerStyle: {
-                backgroundColor: '#f4511e',
-              },
-              headerTintColor: 'white', // My Home
-              headerTitleStyle: {
-                fontWeight: 'bold',
-              },
-            }
-           }
-      >
-      <Stack.Screen 
-           name='MainCategories' 
-           component={CategoryScreen}
-           options={{title: 'My home' }}
-      />
-      <Stack.Screen 
-           name='Subs' 
-           component={SubCategoryScreen}
-
-          //  options={({ route, navigation }) => { 
-          //    const catID  = route.params.categoryID;
-          //    return {title:catID,} ;
-          //  }}        //ASK HASAN DID NOT WORK 
-      />
-
-      <Stack.Screen
-           name='Single Sub'
-           component={SingleSubCategory}
-        />
-
-      <Stack.Screen
-           name='Single Discussion'
-           component={DiscussionView} />
-    {/* <CategoryScreen />  */}
-    {/* </Stack.Navigator> */} 
-    </NavigationContainer>
-   
+    </NavigationContainer> 
     </QueryClientProvider>
   );
 }

@@ -12,7 +12,7 @@ function CategoryScreen({ navigation}){
     ).then((res) => res.data)
   );
 
-  if(catQu.isLoading) return <Text>"Loading..222222."</Text>;
+  if(catQu.isLoading) return <Text>"Loading..."</Text>;
 
   if(catQu.error) return <Text>"An error has occurred: " + {catQu.error.message} </Text>;
    
@@ -38,13 +38,15 @@ function CategoryScreen({ navigation}){
                 catName : dataItem.item.name,
                 catSlug : dataItem.item.slug, 
              })
-             //console.log(dataItem.item.id)
+            //  console.log(dataItem.item.color)
          };
         return(<CategoryGridTile 
                     name={dataItem.item.name} 
                     color={dataItem.item.color}
                     onPress={pressHandler}
-                    />);          
+                    />
+                    );      
+       
     }
     
 

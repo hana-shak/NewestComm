@@ -13,7 +13,7 @@ function SubCategoryList({ id ,name , ImageURI , description}){
           'Single Sub', {
             subcatID : id,
             subcatName : name,
-         }
+            }
         )
         };
 
@@ -39,7 +39,7 @@ function SubCategoryList({ id ,name , ImageURI , description}){
     )
 };
 
-const styles =StyleSheet.create({
+const styles = StyleSheet.create({
     mainList:{
           flex:1, 
           padding:16,
