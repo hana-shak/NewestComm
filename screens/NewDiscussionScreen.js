@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button , Alert} from "react-native";
 import { useState, useEffect} from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { AntDesign } from '@expo/vector-icons'; 
@@ -40,55 +40,49 @@ function StartDiscussion({route, navigation}){
     //   return cats;
     // }); 
    
-  //   const cats = useQuery("categories", () =>
-  //   axios.get(
-  //     "http://143.244.183.12:4200/categories.json"
-  //   ).then((res) => res.data)
-  // );
-    
-    const subsCategoryval = SUBCATEGORIES.filter((subItem)=>{ 
-            return subItem.categoryId.indexOf(value) >= 0 ;  
-          });
-    const subsCategoryvalItem = subsCategoryval.map((val, index)=>{
-              let label,value,SubsArr; 
-              SubsArr = {label:val.id, value:val.id }; 
-              //console.log(SubsArr); label what is shown not the value 
-              return (SubsArr);   
-          });
-    const [subsValue, setSubsValues] = useState(null);
-    const [subsItems, setSubsItems] = useState(subsCategoryvalItem);
-    //console.log('subsCategoryvalItem',subsCategoryvalItem);
-    const [firstVisible, setFirstVisible] = useState(false);
-    const [firstClose, setFirstClose] = useState(false)
+    //   const cats = useQuery("categories", () =>
+    //   axios.get(
+    //     "http://143.244.183.12:4200/categories.json"
+    //   ).then((res) => res.data)
+    // );
     
     const CatOpenHandler = ()=>{
       setCatOpen(true)
       setSubOpen(false)
-      setFirstVisible(false)
     }; 
-    const SubOpenHandler = ()=>{
-      setCatOpen(false),
-      setSubOpen(true)  
-    }; 
+    
     const closingFirst = ()=>{ setCatOpen(false) };
-    const closingSecond = () =>{ setSubOpen(false)};
-    //for Enable-Disable button,,,the default will show the author name
-    const [anonymous, setAnonymous] = useState(false); 
-    const pressingYa = ()=>{
-        setAnonymous(true);
-        //console.log(anonymous)
-    };
-    const confirmDiscussion =( ) =>{
-        
-        let NewDiscuss = {
-          
-           catName:value, 
-           subName:subsValue,
-           discName:inputValue.title,
-           discDesc:inputValue.description,
-           AnonyVal:anonymous,
-        }
-        console.log(NewDiscuss);
+    
+    const confirmDiscussion =() =>{
+     let NewDiscuss={
+      catName:value, 
+      discName:inputValue.title,
+      discDesc:inputValue.description,
+     }; 
+     //console.log(NewDiscuss);
+      
+      if(
+        //  (value === "" || undefined || null) ||
+        //  (subsValue === "" || undefined || null) ||
+        //  (inputValue.title === "") ||
+        //  inputValue.description == "")
+
+         (value == null || undefined) ||
+         (inputValue.title == false || (inputValue.title.length <= 6) ) ||
+         inputValue.description == false || (inputValue.description <= 50)){
+            Alert.alert('Empty Fields', 'Make sure all fields filled with right amount of words', 
+                   [{text:'Ok'}]) 
+          }else{
+            NewDiscuss = {
+              catName:value, 
+              discName:inputValue.title,
+              discDesc:inputValue.description,
+           }
+           
+           console.log(NewDiscuss); 
+           //post request to create new post 
+          }
+         
     }
 
     return(
@@ -125,34 +119,6 @@ function StartDiscussion({route, navigation}){
              justifyContent:'center'}}
     />
    
-    <DropDownPicker
-      zIndex={2000}
-      zIndexInverse={2000}
-      open={subOpen}
-      value={subsValue}
-      items={subsCategoryvalItem}
-      setOpen={SubOpenHandler}
-      onClose={closingSecond}
-      setValue={setSubsValues}
-      setItems={setSubsItems}
-      listMode="MODAL"
-      style={{
-        backgroundColor: "crimson",
-      }}
-      labelStyle={{
-        fontWeight: "bold"
-      }}
-      textStyle={{
-        fontSize: 15,
-        color:'orange'
-      }}
-      containerStyle={{
-             margin:16,
-             marginTop:20,
-             width:'80%',
-             justifyContent:'center',
-             alignItems:'center'}}
-    />
     </View>
              <CustomInput 
               label="Title"
@@ -173,23 +139,6 @@ function StartDiscussion({route, navigation}){
                 onChangeText:inputChangeHandler.bind(this,'description'),
                 value:inputValue.description }}
               />
-        
-            {/* For Check Icon Anonoymus */}
-             <View style={styles.horz}>
-             <AntDesign.Button   
-                name="checkcircleo" 
-                borderRadius= {40}
-                size={18} 
-                iconStyle={ {
-                justifyContent:'center',
-                marginRight:"auto" }}
-                style={styles.enableButton}
-                onPress={pressingYa}
-                backgroundColor='orange'
-                />
-              <Text style={styles.sen}>Show my name</Text>
-              </View> 
-
               <Button title='Add Your Discussion' onPress={confirmDiscussion} /> 
        
         </View>

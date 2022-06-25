@@ -2,17 +2,15 @@ import { View, Text, TextInput, StyleSheet} from 'react-native';
 
 function CustomInput({label,configProps,style }){
 
-     const InputFieldStyle = [styles.InputField]; 
+    const InputFieldStyle = [styles.InputField]; 
     if(configProps && configProps.multiline ){
-        InputFieldStyle.push(styles.multiLine)
+       InputFieldStyle.push(styles.multiLine)
     }
 
     return(
-        <View style={styles.container}>
-           
+        <View style={styles.container}>   
             <Text style={styles.label}>{label}</Text>
-            <TextInput {...configProps}  style={InputFieldStyle}/>
-           
+            <TextInput {...configProps}  style={InputFieldStyle}/>   
         </View>
     )
 };
