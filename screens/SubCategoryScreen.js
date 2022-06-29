@@ -16,12 +16,11 @@ function SubCategoryScreen ({route, navigation}){
 
   const Subs = useQuery('fetchTopics', fetchTopics);
   
-  
-
+  // post_number
   //const response = useQuery("Topics", fetchTopics);
   let arrOfTopics; 
   if (Subs.isSuccess) {
-    arrOfTopics = Subs.data.topic_list.topics; 
+    arrOfTopics = Subs.data.topic_list.topics;
   }
   
   //console.log("fetchTopics.data.topic_list.topics" , fetchTopics.data.topic_list.topics)
@@ -47,15 +46,24 @@ function SubCategoryScreen ({route, navigation}){
     //    })
     //  },[catName, navigation]);
 
-     
+    // const fetchRepliesNum = async () => {
+    //   const res = await fetch(`http://143.244.183.12:4200/posts/${id}/replies.json`);
+    //    return res.json();
+    // };
+  
+    // const RepliesNum = useQuery('fetchRepliesNum', fetchRepliesNum);
+    
+   
 
      const renderSubItem = (dataItem) => {
       const item = dataItem.item; 
+      console.log("item",item);
       const  subcategoryProps = {
         id:item.id,
         name: item.title,
         ImageURI: item.image,
-        description: item.description,
+        replies: item.posts_count -1 ,
+        views: item.views
       };
 
       return( <SubCategoryList  

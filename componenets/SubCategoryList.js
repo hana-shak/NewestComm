@@ -4,7 +4,7 @@ import {useNavigation}  from '@react-navigation/native' ;
 
 
 
-function SubCategoryList({ id ,name , ImageURI , description}){
+function SubCategoryList({ id ,name , ImageURI , replies, views}){
     
     const navigation = useNavigation();
 
@@ -26,13 +26,16 @@ function SubCategoryList({ id ,name , ImageURI , description}){
                    >
            
            
-            <Image source={{ uri : ImageURI }} style={styles.image} />
+            {/* <Image source={{ uri : ImageURI }} style={styles.image} /> */}
             
             <Text style={styles.name}>
                 {name}
             </Text>
             <Text style={styles.des}>
-                {description}
+            {replies} Replies
+            </Text>
+            <Text style={styles.des}>
+            {views} views
             </Text>
             </Pressable>
         </View>
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
           flex:1, 
           padding:16,
           margin:16,
-          height:300,
+          height:150,
           maxHeight:660,
           borderRadius:8,
           elevation:8,
@@ -52,7 +55,8 @@ const styles = StyleSheet.create({
           shadowOpacity:0.35,
           shadowOffset:{height:2, width:0},
           shadowRadius:8,
-          backgroundColor:'white',
+          backgroundColor:'red',
+          //#FAEBD7 this is for backgroundColor in line 55
           overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
 
 
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
         opacity:.35,
     },
     des:{
-        height:170,
+        height:30,
     }
 
 })

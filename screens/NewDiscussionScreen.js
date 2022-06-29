@@ -9,6 +9,8 @@ import  SUBCATEGORIES from '../data/dummydata';
 import axios from "axios";
 import {useQuery, queryClient, useQueryClient } from "react-query";
 
+
+
 const setItemHandler = CATEGORIES.map((val, index)=>{
   //console.log(val.name);
   let label,value,newArr; 
@@ -18,13 +20,15 @@ const setItemHandler = CATEGORIES.map((val, index)=>{
 }); 
 
 
-function StartDiscussion({route, navigation}){   
+function StartDiscussion({route, navigation}){ 
+  
+  
     // All constants needed
     const [inputValue, setInputValue] = useState({
         title:'',
         description:'',
     });
-
+    const[isLoadingData,setIsLoadingData]=useState(false);
     function inputChangeHandler(inputIdentifier,enteredValue){
         setInputValue((currentInputValue)=>{
                 return{ ...currentInputValue,[inputIdentifier]:enteredValue  }
@@ -35,10 +39,14 @@ function StartDiscussion({route, navigation}){
     const [value, setValue] = useState(null);
     const [items, setItems] = useState(setItemHandler);
 
-    // const { status, data, error, isFetching } = useQuery('cat', async()=>{
-    //   const cats = await axios.get("http://143.244.183.12:4200/categories.json").then((res) => res.data);
-    //   return cats;
-    // }); 
+    // useEffect=(()=>{ 
+    //   setIsLoadingData(false);
+    //   fetch('http://143.244.183.12:4200/categories.json') 
+    //   .then(res => { if(res.ok){ return res.json() } throw res; }) 
+    //   .then(data=>{ setItems(data); {CorrectJSON(data),()=>{ setIsLoadingData(true); }} }) 
+    //   .catch(error=>{ console.log(error); }) },[]); 
+   
+   
    
     //   const cats = useQuery("categories", () =>
     //   axios.get(
@@ -85,13 +93,21 @@ function StartDiscussion({route, navigation}){
          
     }
 
+    // const CorrectJSON=(dataJSON)=>{ 
+    //   let newArrObj 
+    //   if(dataJSON){ 
+    //     dataJSON.map((ele)=>{
+    //       newArrObj.push({ "label":ele.slug, "value":ele.value })
+    //      }).then(setItems(newArrObj)) } }
+
     return(
         <View>
         <Text style={styles.formTitle}>Start A New Discussion</Text>
         <View style={styles.container}>
 
     <View style={{backgroundColor:'yellow'}}>
-    <DropDownPicker
+    
+      <DropDownPicker
       zIndex={3000}
       zIndexInverse={1000}
       open={catOpen}
@@ -118,6 +134,7 @@ function StartDiscussion({route, navigation}){
              width:'80%',
              justifyContent:'center'}}
     />
+     
    
     </View>
              <CustomInput 
