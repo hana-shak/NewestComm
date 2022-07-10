@@ -57,9 +57,9 @@ function SubCategoryScreen ({route, navigation}){
 
      const renderSubItem = (dataItem) => {
       const item = dataItem.item; 
-      console.log("item",item);
+      //console.log("item",item);
       const  subcategoryProps = {
-        id:item.id,
+        id:item.id,  //topicId which needed for 
         name: item.title,
         ImageURI: item.image,
         replies: item.posts_count -1 ,

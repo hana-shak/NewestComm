@@ -20,6 +20,7 @@ function CategoryScreen({ navigation}){
   let arr; 
   if(catQu.isSuccess){
     arr = catQu.data.category_list['categories'];
+    //console.log(arr);
   };
  
   // const arr = catQu.data.category_list['categories']
@@ -33,12 +34,12 @@ function CategoryScreen({ navigation}){
   // }
     function ItemCategoryRender(dataItem){
         function pressHandler (){
-             navigation.navigate('Subs', {
+             navigation.navigate('All Topics of Category', {
                 catID : dataItem.item.id,
                 catName : dataItem.item.name,
                 catSlug : dataItem.item.slug, 
              })
-            //  console.log(dataItem.item.color)
+              //console.log("dataItem.item",dataItem.item)
          };
         return(<CategoryGridTile 
                     name={dataItem.item.name} 

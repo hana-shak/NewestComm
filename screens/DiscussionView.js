@@ -8,16 +8,16 @@ import { useQuery} from "react-query";
 function DiscussionView({route, navigation}){
 
     const {discussionID ,
-        discussionTitle,
+        discussionBody,
         discussionImage,
         discussionAnonymous } = route.params;
    // console.log(discussionID)
     useLayoutEffect(()=>{
         navigation.setOptions({
-            title:discussionTitle,
+            body:discussionBody,
             
          } );
-    },[discussionTitle,navigation],
+    },[discussionBody,navigation],
      
     );
 
@@ -25,7 +25,7 @@ function DiscussionView({route, navigation}){
         <View>
             
             <Image source={{ uri: discussionImage}}  style={styles.img}/> 
-            <Text style={styles.name}> {discussionTitle} </Text>
+            <Text style={styles.name}> {discussionBody} </Text>
             
         </View>
     )

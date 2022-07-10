@@ -7,10 +7,9 @@ import {useNavigation}  from '@react-navigation/native' ;
 function SubCategoryList({ id ,name , ImageURI , replies, views}){
     
     const navigation = useNavigation();
-
     const pressHandler = () => {
         navigation.navigate(
-          'Single Sub', {
+          'Discussion', {
             subcatID : id,
             subcatName : name,
             }

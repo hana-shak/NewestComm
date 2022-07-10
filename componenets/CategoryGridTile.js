@@ -1,7 +1,7 @@
 import { View, Text, Pressable, StyleSheet, Platform } from "react-native";
 
 function CategoryGridTile({name, color, onPress}) {
-    console.log(color);
+   // console.log(color);
     return(
         <View style={[styles.gridItem, {backgroundColor :  `${'#'+color}`} ]}>
             <Pressable 

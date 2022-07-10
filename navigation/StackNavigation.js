@@ -6,6 +6,7 @@ import CategoryScreen from '../screens/CategoryScreen';
 import SubCategoryScreen from '../screens/SubCategoryScreen';
 import SingleSubCategory from '../screens/SingleSubCategoryScreen';
 import DiscussionView from '../screens/DiscussionView';
+import EditTopic from '../screens/EditTopicScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,7 +36,7 @@ function StackNavigation(){
      
 />
 <Stack.Screen 
-     name='Subs' 
+     name='All Topics of Category' 
      component={SubCategoryScreen}
      
 
@@ -46,13 +47,21 @@ function StackNavigation(){
 />
 
 <Stack.Screen
-     name='Single Sub'
+     name='Discussion'
      component={SingleSubCategory}
   />
 
 <Stack.Screen
      name='Single Discussion'
-     component={DiscussionView} />
+     component={DiscussionView} 
+  />
+
+<Stack.Screen
+    name='Edit Topic'
+    component={EditTopic}
+/>
+
+
 {/* <CategoryScreen />  */}
 </Stack.Navigator>
 
