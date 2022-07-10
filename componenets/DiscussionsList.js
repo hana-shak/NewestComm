@@ -50,6 +50,9 @@ function DiscussionsList({id, body, image, anonymous, postNumber}){
     const deleteHandler = () =>{
       return(
         <View> 
+        {Alert.alert('Deleting..', 'Are you sure you want to delete this topic', 
+           [{text:'Ok', onPress:console.log('Deleted')}]
+      )}
         </View>
       )
     };
