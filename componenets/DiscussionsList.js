@@ -1,15 +1,25 @@
 import { useState } from 'react';
-import {View, Text, StyleSheet, Pressable, Modal, TextInput, Button, Alert} from 'react-native';
+import {View,
+        Text, 
+        StyleSheet, 
+        Pressable, 
+        Modal, 
+        TextInput, 
+        Button, 
+        Alert} from 'react-native';
 import {useNavigation}  from '@react-navigation/native' ;
-import { AntDesign } from '@expo/vector-icons'; 
-import { FontAwesome5, FontAwesome } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import { FontAwesome5,
+         FontAwesome , 
+         AntDesign,
+         MaterialIcons,
+         MaterialCommunityIcons  } from '@expo/vector-icons';
+import  CustomModal  from '../componenets/Basics/CustomModal';
 function DiscussionsList({id, body, image, anonymous, postNumber}){
     
     const navigation = useNavigation();
-    const[bookMarked, setBookMarked] = useState(false); 
+    const[bookMarked, setBookMarked] = useState(false);
+    const[modalVisible, setModalVisible] = useState(false);
+
     const pressHandler = () => {
         navigation.navigate('Single Discussion',{
             discussionID : id,
@@ -20,12 +30,10 @@ function DiscussionsList({id, body, image, anonymous, postNumber}){
     };
     
 
-     // Modal Navigation Code
+    // Maybe later I can link it to navigation!! for topic_id and auth_id data
     const replyHandler = () =>{
-      // navigation.navigate('Write a Reply',{
-      
-      // })
-      
+         setModalVisible(true)
+     
     };
 
     const specialMsgHandler = () =>{
@@ -78,14 +86,14 @@ function DiscussionsList({id, body, image, anonymous, postNumber}){
                     color="black" 
                     onPress={replyHandler}
                />    
-
-               <MaterialCommunityIcons 
+               {/* As a business feature not secure to have one to one chat // main concept is General & secure */}
+               {/* <MaterialCommunityIcons 
                        name="message-reply-text" 
                        size={24} 
                        color='black' 
                        onPress={specialMsgHandler}
                        iconStyle={{color:'red'}}
-                />    
+                />     */}
               {/* if marked or not  */}
               <View>{
                bookMarked ?
@@ -120,12 +128,63 @@ function DiscussionsList({id, body, image, anonymous, postNumber}){
                    color="black"
                    onPress={deleteHandler} 
                 />  
-             
+              <MaterialIcons 
+                  name="report-problem" 
+                  size={24} 
+                  color="black" 
+                  onPress={()=>{console.log('Reported')}}
+                />
                
                </View>
             </Pressable>   
-           
+
+{/* Modal Code  */}
+
+<View>
+    
+    {/* // Modal Testing and new try */}  
+<View style={styles.screen}>
+{modalVisible ?  
+   <Modal
+        presentationStyle='fullScreen'
+        transparent={false}
+        visible={true}
+        style={styles.modalStyle}
+        onRequestClose={() => {
+               Alert.alert("Modal has been closed.");
+               this.setModalVisible(!modalVisible);
+             
+     }}
+     >
+      <View>
+        
+        <View style={styles.inputStyling}>
+          <TextInput 
+            placeholder="useless placeholder"
+            style={styles.texting}
+            keyboardAppearance='default'
+            autoCapitalize='none'
+           //  onChangeText={inputHandler}
+           //  value={enterVal}
+          />
+          <View style={styles.buttonContainer}>
+          <Button  title="Reply" onPress={console.log('Replied')}/>
+          <Button  title="Cancel" onPress={console.log('Cancelled')}/>
+          </View>
+        </View>
       </View>
+     </Modal>  :
+     null 
+    }
+ </View>   
+ {/* Modal Code Finished */}
+
+ </View>
+
+  
+
+</View>
+
     )
 };
 
@@ -173,6 +232,31 @@ const styles = StyleSheet.create({
         color:'red',
       
         
+      },
+      modalStyle:{
+        margin:30,
+        
+        
+    
+      },
+      inputStyling:{
+        margin:30,
+        padding:16,
+        // height:'80%',
+        // width:'80%',
+        borderWidth: 1,
+      },
+      texting:{
+        margin:3,
+        height:'80%',
+        width:'95%',
+        borderWidth: 1,
+      },
+      buttonContainer:{
+        display:'flex',
+        flexDirection:'row' ,
+        justifyContent:'space-between',
+        margin:'2%', 
       }
       
 });
