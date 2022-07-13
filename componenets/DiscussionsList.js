@@ -65,6 +65,16 @@ function DiscussionsList({id, body, image, anonymous, postNumber}){
       )
     };
 
+    const reportHAndler = () =>{
+      return(
+        <View> 
+        {Alert.alert('Reporting..', 'Are you sure you want to delete this topic', 
+           [{text:'Ok', onPress:console.log('Reported')}]
+      )}
+        </View>
+      )
+    }
+
 
 
     return(
@@ -132,7 +142,7 @@ function DiscussionsList({id, body, image, anonymous, postNumber}){
                   name="report-problem" 
                   size={24} 
                   color="black" 
-                  onPress={()=>{console.log('Reported')}}
+                  onPress={reportHAndler}
                 />
                
                </View>
