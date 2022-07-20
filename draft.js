@@ -138,3 +138,14 @@
                 />
              {<Text style={styles.sen}>Show my name</Text>}
               </View>  */}
+
+//From CategoryScreen.js 
+// const arr = catQu.data.category_list['categories']
+  //const arr = data.category_list['categories']; 
+  //console.log(arr)
+  
+  //  if(isSuccess){
+  // const arr = data.category_list['categories'];
+  //   // console.log(arr)      
+  // {arr.map((item, index)=>{return <Text key={index}>{item.name} , {item.id} </Text> })}   
+  // }

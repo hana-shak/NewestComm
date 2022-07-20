@@ -16,6 +16,7 @@ import { AntDesign } from '@expo/vector-icons';
 import Categories from '../constants/Categories'
 import axios from "axios";
 import { useQuery} from "react-query";
+import CustomPicker from '../componenets/Basics/CustomPicker'
 
 // const setItemHandler = CATEGORIES.map((val, index)=>{
 //   //console.log(val.name);
@@ -54,7 +55,7 @@ function Profile(){
        Categories()
       </Text>
       <Button title="Press Me" onPress={()=>{}} />
-    
+      <CustomPicker />
 
 
   </View>

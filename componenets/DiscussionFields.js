@@ -8,12 +8,6 @@ import { Entypo } from '@expo/vector-icons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { AntDesign } from '@expo/vector-icons'; 
 
-
-
-
-// import {useNavigation}  from '@react-navigation/native' ;
-
-
 function DiscussionFields(){
     const [inputValue, setInputValue] = useState({
         title:'',
