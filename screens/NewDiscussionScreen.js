@@ -1,29 +1,56 @@
-import { View, Text, StyleSheet, Button , Alert} from "react-native";
+import { View, Text, StyleSheet, Button , Alert, Pressable, FlatList,TouchableWithoutFeedback,TouchableOpacity} from "react-native";
 import { useState, useEffect} from 'react';
-import DropDownPicker from 'react-native-dropdown-picker';
 import { AntDesign } from '@expo/vector-icons'; 
 import CustomInput from '../componenets/CustomiedInput';
 import Categories from '../constants/Categories'; 
 import { CATEGORIES }  from '../data/dummydata';
 import  SUBCATEGORIES from '../data/dummydata';
 import useCategories  from '../utilis/useCategoriesRQ';
+import CustomPicker from '../componenets/Basics/CustomPicker'; 
+import { MaterialIcons } from '@expo/vector-icons'; 
 
-
-
-const setItemHandler = CATEGORIES.map((val, index)=>{
-  //console.log(val.name);
-  let label,value,newArr; 
-  newArr = { label:val.name, value:val.id }
-  //console.log(newArr);
-  return (newArr);     
-}); 
 
 
 function StartDiscussion({route, navigation}){ 
-   
     //Getting Categories 
+    const [selectedId, setSelectedId] = useState(null);
+    const [pressedArrow, setPressedArrow] = useState(false);
+    const [choicedCat, setChoicedCat] = useState(false);
+    const [dropdownTitle, setDropdownTitle] = useState('Choice Category')
+
+    //Getting data directly from query
     const {isLoading, error, isSuccess, data } = useCategories(); 
+    //var choicedVal; 
+    let arrCat; 
+      if(isSuccess){
+        arrCat = data.category_list['categories']; 
+       }; 
+       
+    const pressingArrow = () => { 
+        return setPressedArrow(true)
+    }
+   //console.log('after prressing'+pressedArrow); 
+    const choicingItem = (itemId,itemName) =>{
+       setSelectedId(itemId);
+       //console.log(itemId);
+       //console.log(itemName);
+       setDropdownTitle(itemName);
+       setPressedArrow(false);
+       return setChoicedCat(true);
+    }
    
+    const renderItem = (dataItem) => {
+      
+      return (
+          <View>
+             <Text  onPress={() => choicingItem(dataItem.item.id,dataItem.item.name)}>
+              {dataItem.item.name} 
+             </Text>
+          </View>    
+      );
+    };
+ 
+    
     const [inputValue, setInputValue] = useState({
         title:'',
         description:'',
@@ -33,100 +60,67 @@ function StartDiscussion({route, navigation}){
                 return{ ...currentInputValue,[inputIdentifier]:enteredValue  }
         });
     };
-
    
-    const [catOpen, setCatOpen] = useState(false);
-    const [subOpen, setSubOpen] = useState(false); 
-    const [value, setValue] = useState(null);
-    const [items, setItems] = useState(setItemHandler);
-
-    
-    const CatOpenHandler = ()=>{
-      setCatOpen(true)
-      setSubOpen(false)
-    }; 
-    
-    const closingFirst = ()=>{ setCatOpen(false) };
-    
     const confirmDiscussion =() =>{
      let NewDiscuss={
-      catName:value, 
       discName:inputValue.title,
       discDesc:inputValue.description,
      }; 
      //console.log(NewDiscuss);
       
       if(
-        //  (value === "" || undefined || null) ||
-        //  (subsValue === "" || undefined || null) ||
-        //  (inputValue.title === "") ||
-        //  inputValue.description == "")
-
-         (value == null || undefined) ||
          (inputValue.title == false || (inputValue.title.length <= 6) ) ||
          inputValue.description == false || (inputValue.description <= 50)){
             Alert.alert('Empty Fields', 'Make sure all fields filled with right amount of words', 
                    [{text:'Ok'}]) 
           }else{
             NewDiscuss = {
-              catName:value, 
               discName:inputValue.title,
               discDesc:inputValue.description,
            }
            console.log(NewDiscuss); 
            //post request to create new post 
-          }
-         
+          }   
     }
 
     if(isLoading) return <Text>"Loading..."</Text>;
 
     if(error) return <Text>"An error has occurred: " + {error.message} </Text>;
-   
-    
-    
-    
-    
-
 
     return(
         <View>
         <Text style={styles.formTitle}>Start A New Discussion</Text>
         <View style={styles.container}>
 
-    <View style={{backgroundColor:'yellow'}}>
-      {isLoading ? <View> </View> : 
-      <DropDownPicker
-      zIndex={3000}
-      zIndexInverse={1000}
-      open={catOpen}
-      onClose={closingFirst}
-      value={value}
-      items={items}
-      setOpen={CatOpenHandler}
-      setValue={setValue}
-      setItems={setItems}
-      listMode="MODAL"
-      style={{
-        backgroundColor: "crimson",
-      }}
-      labelStyle={{
-        fontWeight: "bold"
-      }}
-      textStyle={{
-        fontSize: 15,
-        color:'orange'
-      }}
-      containerStyle={{
-             margin:16,
-             marginTop:20,
-             width:'80%',
-             justifyContent:'center'}}
-    />
-  } 
-     
+    <View style={styles.containerDropdown}>
+            <View   
+               style={styles.container}>
+               <View style={styles.textarrowContainer}>
+                <Text>{dropdownTitle}</Text>  
+                <MaterialIcons 
+                    name="arrow-drop-down" 
+                    size={24} 
+                    color="black" 
+                    onPress={pressingArrow}
+                />
+                </View>
+            </View>
+            <View>
+                {pressedArrow && isSuccess ? 
+                <View style={styles.flatlistContainer}>
+                <FlatList 
+                data={arrCat}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+                extraData={selectedId}
+                />
+                </View>
+                : 
+                null
+                }
+            </View>
+          
     </View>
-    
              <CustomInput 
               label="Title"
               configProps={{
@@ -177,7 +171,33 @@ const styles = StyleSheet.create({
         marginTop:7,
         fontSize:18,
         fontWeight:'bold'
-    }
+    },
+    containerDropdown:{
+      backgroundColor:'gray',
+      // padding:13,
+      marginHorizontal:20,   
+  },
+  textarrowContainer:{
+      display:'flex',
+      flexDirection:'row',
+      justifyContent:'space-between', 
+  },
+  flatlistContainer:{
+      backgroundColor:'red',
+      padding:13,
+      marginHorizontal:20,
+      
+  },
+  
+  item: {
+      padding: 20,
+      marginVertical: 8,
+      marginHorizontal: 16,
+    },
+    title: {
+      fontSize: 32,
+      color : 'white'
+    },
 });
 
 export default StartDiscussion; 

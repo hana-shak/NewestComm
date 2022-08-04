@@ -8,7 +8,8 @@ import {View,
        Modal, 
        TextInput, 
        Button, 
-       Alert
+       Alert,
+       TouchableOpacity
 } from 'react-native'
 import { CATEGORIES }  from '../data/dummydata';
 import  SUBCATEGORIES from '../data/dummydata';
@@ -17,6 +18,7 @@ import Categories from '../constants/Categories'
 import axios from "axios";
 import { useQuery} from "react-query";
 import CustomPicker from '../componenets/Basics/CustomPicker'
+import useCategories from '../utilis/useCategoriesRQ';
 
 // const setItemHandler = CATEGORIES.map((val, index)=>{
 //   //console.log(val.name);
@@ -46,27 +48,20 @@ import CustomPicker from '../componenets/Basics/CustomPicker'
 
 
 function Profile(){
-  
-
-  return (
+  return(
     <View>
       <Text>
         This is Profile Screen WOW == Usder Authentication Section
        Categories()
       </Text>
       <Button title="Press Me" onPress={()=>{}} />
+      
       <CustomPicker />
 
+  </View> 
 
-  </View>
-  )
+)
+
 };
-
-const styles = StyleSheet.create({
-  
-
-});
-
-
  
  export default Profile; 

@@ -8,9 +8,9 @@ import { useQuery} from "react-query";
 function DiscussionView({route, navigation}){
 
     const {discussionID ,
-        discussionBody,
-        discussionImage,
-        discussionAnonymous } = route.params;
+           discussionBody,
+           discussionImage,
+           discussionAnonymous } = route.params;
    // console.log(discussionID)
     useLayoutEffect(()=>{
         navigation.setOptions({
@@ -22,11 +22,9 @@ function DiscussionView({route, navigation}){
     );
 
     return(
-        <View>
-            
+        <View>  
             <Image source={{ uri: discussionImage}}  style={styles.img}/> 
-            <Text style={styles.name}> {discussionBody} </Text>
-            
+            <Text style={styles.name}> {discussionBody} </Text>    
         </View>
     )
 };

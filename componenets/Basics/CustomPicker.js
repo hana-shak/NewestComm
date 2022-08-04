@@ -11,9 +11,10 @@ import { MaterialIcons } from '@expo/vector-icons';
 import useCategories from '../../utilis/useCategoriesRQ';
 
 const CustomPicker = () =>{
-    // const [arr, arrSetValues] = useState({});
+  
     const [selectedId, setSelectedId] = useState(null);
-    const [pressedArrow, setPressedArrow] = useState(false); 
+    const [pressedArrow, setPressedArrow] = useState(false);
+    const [dropdownTitle, setDropdownTitle] = useState('')
     //Getting data directly from query
     const {isLoading, error, isSuccess, data } = useCategories(); 
     
@@ -22,47 +23,58 @@ const CustomPicker = () =>{
         arrCat = data.category_list['categories']; 
        }; 
 
-    console.log(pressedArrow); 
+    //console.log(pressedArrow); 
     const pressingArrow = () => { 
          return setPressedArrow(true)
     }
-    console.log('after prressing'+pressedArrow); 
-    
+    //console.log('after prressing'+pressedArrow); 
+    const choicingItem = (x) =>{
+        setSelectedId(x);
+       
+        return setPressedArrow(false)
+    }
+
+   
+
     const renderItem = (dataItem) => {
         return (
             <TouchableOpacity>
-               <Text>
-                   {dataItem.item.name}
+               <Text 
+                  onPress={choicingItem.bind(dataItem.item.id)}
+                >
+                {dataItem.item.name}    
+
                </Text>
-            </TouchableOpacity>
+            </TouchableOpacity>    
         );
       };
 
       
 
     return <View>
-            <Pressable 
+            <Pressable   
                onPress={console.log("pressed the pressable")}
                style={styles.container}>
-                
-                <View style={styles.downArrow}>
+               <View style={styles.textarrowContainer}>
+                <Text>Choice Category</Text>  
                 <MaterialIcons 
                     name="arrow-drop-down" 
                     size={24} 
                     color="black" 
                     onPress={pressingArrow}
                 />
-                </View>   
+                </View>
             </Pressable>
             <View>
                 {pressedArrow && isSuccess ? 
-                
+                <View style={styles.flatlistContainer}>
                 <FlatList 
                 data={arrCat}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 extraData={selectedId}
-             />
+                />
+                </View>
                 : 
                 null
                 }
@@ -71,14 +83,23 @@ const CustomPicker = () =>{
 }
 
 const styles = StyleSheet.create({
-    container:{
+    containerDropdown:{
         backgroundColor:'gray',
         padding:13,
-        margin:20,
+        marginHorizontal:20,   
     },
-    downArrow:{
-        alignItems:'flex-end'
+    textarrowContainer:{
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-between', 
     },
+    flatlistContainer:{
+        backgroundColor:'red',
+        padding:13,
+        marginHorizontal:20,
+        
+    },
+    
     item: {
         padding: 20,
         marginVertical: 8,
