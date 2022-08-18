@@ -1,13 +1,20 @@
-import { View, Text, StyleSheet, Button , Alert, Pressable, FlatList,TouchableWithoutFeedback,TouchableOpacity} from "react-native";
+import { 
+     View, 
+     Text, 
+     StyleSheet, 
+     Button , 
+     Alert,  
+     FlatList,
+      } from "react-native";
 import { useState, useEffect} from 'react';
-import { AntDesign } from '@expo/vector-icons'; 
+import { AntDesign, MaterialIcons } from '@expo/vector-icons'; 
 import CustomInput from '../componenets/CustomiedInput';
 import Categories from '../constants/Categories'; 
 import { CATEGORIES }  from '../data/dummydata';
 import  SUBCATEGORIES from '../data/dummydata';
 import useCategories  from '../utilis/useCategoriesRQ';
 import CustomPicker from '../componenets/Basics/CustomPicker'; 
-import { MaterialIcons } from '@expo/vector-icons'; 
+// import { MaterialIcons } from '@expo/vector-icons'; 
 
 
 
