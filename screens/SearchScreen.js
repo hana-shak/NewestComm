@@ -10,7 +10,7 @@ function Search(){
   
     return(
       <View>
-        <Text>Hey PPL</Text>  
+        <Text>Hey PiiiiiiiPL</Text>  
      
       </View>
        )
