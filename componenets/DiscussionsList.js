@@ -12,7 +12,8 @@ import { FontAwesome5,
          FontAwesome , 
          AntDesign,
          MaterialIcons,
-         MaterialCommunityIcons  } from '@expo/vector-icons';
+         MaterialCommunityIcons
+           } from '@expo/vector-icons';
 import  CustomModal  from '../componenets/Basics/CustomModal';
 function DiscussionsList({id, body, image, anonymous, postNumber}){
     

@@ -11,16 +11,16 @@ import {View,
        Alert,
        Image,
        TouchableOpacity
-} from 'react-native'
-import { CATEGORIES }  from '../data/dummydata';
-import  SUBCATEGORIES from '../data/dummydata';
-import { AntDesign } from '@expo/vector-icons';
-import Categories from '../constants/Categories'
+} from 'react-native';
+import { FontAwesome5,
+  FontAwesome , 
+  AntDesign,
+  MaterialIcons,
+  MaterialCommunityIcons,
+  Feather,
+  Foundation  } from '@expo/vector-icons';
 import axios from "axios";
 import { useQuery} from "react-query";
-import CustomPicker from '../componenets/Basics/CustomPicker'
-import useCategories from '../utilis/useCategoriesRQ';
-
 
 export type testing = {
     id ?: string,
@@ -31,30 +31,88 @@ export type testing = {
 
 
 function Profile(){
+
+  
+
   return(
     <View style={styles.mainContainer}>
      
       <View style={styles.definitionPart}>
-        
         <Image 
            style={styles.userImg}
            source={require('../assets/usericonimageorange.jpeg')}
         />
-       
-        
         <View  style={styles.textContainer}>
         <Text>Samera </Text>
         <Text>Samera@gmail.com</Text>
         </View>
-      
-
       </View>
 
       {/* List Posts, update, Settings, ContactUs */}
-      <View>
+      
+
+      <View style={styles.listContainer}>
+      
+      <Pressable   
+        onPress={()=>{console.log('Pressed ya babe the text')}}
+        style={styles.viewStyling}>
+      <Foundation 
+          name="list" 
+          size={34} 
+          color="black" 
+        />
+          <Text style={styles.textStyling} > User Posts  </Text>
+      </Pressable>
+      
+
+      <Pressable   
+        onPress={()=>{console.log('Pressed ya babe the text')}}
+        style={styles.viewStyling}>
+      <Feather 
+          name="bookmark" 
+          size={34} 
+          color="black" 
+         
+        />
+          <Text style={styles.textStyling} > Saved Posts  </Text>
+      </Pressable>
+      
+      <Pressable   
+        onPress={()=>{console.log('Pressed ya babe the text')}}
+        style={styles.viewStyling}>
+      <MaterialCommunityIcons 
+           name="account-edit-outline" 
+           size={34} 
+           color="black" 
+          />
+          <Text style={styles.textStyling} > Update Profile  </Text>
+      </Pressable>
+      
+      
+       <Pressable   
+        onPress={()=>{console.log('Pressed ya babe the text')}}
+        style={styles.viewStyling}>
+        <Feather 
+          name="settings" 
+          size={34} 
+          color="black"   
+       />
+          <Text style={styles.textStyling} > Settings  </Text>
+      </Pressable>
+
+     <Pressable   
+        onPress={()=>{console.log('Pressed ya babe the text')}}
+        style={styles.viewStyling}>
+      <MaterialIcons 
+           name="contact-page" 
+           size={34} 
+           color="black" 
+          />
+          <Text style={styles.textStyling} > Contact Us  </Text>
+      </Pressable>
+
 
       </View>
-
     </View> 
 
 )
@@ -87,8 +145,25 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     margin:5,
     alignItems:'center'
-
+  },
+  listContainer:{
+    padding:15,
+    marginHorizontal:15,
+    alignItems:'center',
+  },
+  viewStyling:{
+    flexDirection:'row',
+    marginHorizontal:15,
+     padding:20,
+    
+  },
+  textStyling:{
+    fontSize:22,
+    fontWeight:'bold',
+    marginLeft:4,
+    marginTop:3,
   }
+  
 });
  
  export default Profile; 

@@ -8,8 +8,7 @@ function CategoryGridTile({name, color, onPress}) {
                 style={({pressed})=>  [styles.button , pressed ? styles.buttonPressed : null  ]}
                 android_ripple={{color:'#ccc'}}
                 // style={({pressed})=>  {[styles.button , pressed (?./?) styles.buttonPressed : null  ]}} ASK HASAN
-                onPress={onPress}
-                
+                onPress={onPress}   
             >
                 <View style={styles.innerItem}>
                     <Text style={styles.title}>
