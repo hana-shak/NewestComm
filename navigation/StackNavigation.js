@@ -7,6 +7,7 @@ import SubCategoryScreen from '../screens/SubCategoryScreen';
 import SingleSubCategory from '../screens/SingleSubCategoryScreen';
 import DiscussionView from '../screens/DiscussionView';
 import EditTopic from '../screens/EditTopicScreen';
+import UpdateProfile from '../screens/UpdateProfile';
 
 const Stack = createNativeStackNavigator();
 
@@ -59,6 +60,11 @@ function StackNavigation(){
 <Stack.Screen
     name='Edit Topic'
     component={EditTopic}
+/>
+
+<Stack.Screen 
+     name='Update Profile'
+     component={UpdateProfile}
 />
 
 

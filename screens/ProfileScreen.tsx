@@ -21,6 +21,7 @@ import { FontAwesome5,
   Foundation  } from '@expo/vector-icons';
 import axios from "axios";
 import { useQuery} from "react-query";
+import {useNavigation}  from '@react-navigation/native' ;
 
 export type testing = {
     id ?: string,
@@ -32,6 +33,17 @@ export type testing = {
 
 function Profile(){
 
+  const navigation = useNavigation();
+
+  const UpdateHandler = () =>{
+    navigation.navigate('Update Profile'
+    //,{
+    //discussionID : id,
+    //discussionBody:body,
+    //}
+     
+     );
+   };
   
 
   return(
@@ -78,7 +90,7 @@ function Profile(){
       </Pressable>
       
       <Pressable   
-        onPress={()=>{console.log('Pressed ya babe the text')}}
+        onPress={UpdateHandler}
         style={styles.viewStyling}>
       <MaterialCommunityIcons 
            name="account-edit-outline" 
