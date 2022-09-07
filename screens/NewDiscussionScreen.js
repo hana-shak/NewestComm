@@ -5,9 +5,10 @@ import {
      Button , 
      Alert,  
      FlatList,
+     Pressable
       } from "react-native";
 import { useState, useEffect} from 'react';
-import { AntDesign, MaterialIcons } from '@expo/vector-icons'; 
+import { AntDesign, MaterialIcons , Feather} from '@expo/vector-icons'; 
 import CustomInput from '../componenets/CustomiedInput';
 import Categories from '../constants/Categories'; 
 import { CATEGORIES }  from '../data/dummydata';
@@ -23,8 +24,8 @@ function StartDiscussion({route, navigation}){
     const [selectedId, setSelectedId] = useState(null);
     const [pressedArrow, setPressedArrow] = useState(false);
     const [choicedCat, setChoicedCat] = useState(false);
-    const [dropdownTitle, setDropdownTitle] = useState('Choice Category')
-
+    const [dropdownTitle, setDropdownTitle] = useState('Choice Category');
+    const [checkedAnonymous, setCheckedAnonymous] = useState(false);
     //Getting data directly from query
     const {isLoading, error, isSuccess, data } = useCategories(); 
     //var choicedVal; 
@@ -44,6 +45,10 @@ function StartDiscussion({route, navigation}){
        setDropdownTitle(itemName);
        setPressedArrow(false);
        return setChoicedCat(true);
+    }
+
+    const anonymousHandling = () =>{
+         setCheckedAnonymous(!checkedAnonymous);
     }
    
     const renderItem = (dataItem) => {
@@ -126,6 +131,7 @@ function StartDiscussion({route, navigation}){
                 null
                 }
             </View>
+            
           
     </View>
              <CustomInput 
@@ -146,7 +152,53 @@ function StartDiscussion({route, navigation}){
                 multiline:true,
                 onChangeText:inputChangeHandler.bind(this,'description'),
                 value:inputValue.description }}
+                
               />
+
+                <Pressable 
+                    onPress={()=>{console.log("anonyoumsHandling")}}
+                    style={styles.attachingStyle}
+                    >
+                <AntDesign 
+                    name="paperclip" 
+                    size={20} 
+                    color="black" 
+                />
+                <Text 
+                   style={styles.attachingText}>
+                   Add a picture if you want 
+                </Text>
+                </Pressable>
+                
+                <View style={styles.attachingStyle}>
+                    { checkedAnonymous 
+                    ? 
+                    <Text 
+                       onPress={anonymousHandling}
+                       style={styles.attachingText}
+                       >
+                     <Feather 
+                        name="check-circle" 
+                        size={20} 
+                        color="black" 
+                    /> 
+                    Your Name will NOT appeare</Text>
+                    :  
+                    <Text 
+                       onPress={anonymousHandling}
+                       style={styles.attachingText}>
+                     <Feather 
+                         name="circle" 
+                         size={20} 
+                         color="black" 
+                     /> 
+                    Your Name will appear,if you don't want to, click plzzz</Text>
+                    
+                     }
+                </View>
+               
+               
+
               <Button title='Add Your Discussion' onPress={confirmDiscussion} /> 
        
         </View>
@@ -198,13 +250,25 @@ const styles = StyleSheet.create({
   
   item: {
       padding: 20,
-      marginVertical: 8,
-      marginHorizontal: 16,
+      marginVertical: 4, //was 8 
+     marginHorizontal: 16,
     },
     title: {
       fontSize: 32,
       color : 'white'
     },
+    attachingStyle:{
+        marginTop:-10,
+        padding:5,
+        marginHorizontal:16,
+        flexDirection:'row',
+    },
+    attachingText:{ 
+        // paddingHorizontal:7,
+        padding:4,
+        fontWeight:'bold',
+        color:'grey'
+    }
 });
 
 export default StartDiscussion; 

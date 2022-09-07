@@ -9,3 +9,4 @@ const getCategories = async () =>  {
 export default function useCategories(){
     return useQuery(["repoData"], getCategories) 
 }; 
+

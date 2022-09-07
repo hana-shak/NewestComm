@@ -36,13 +36,12 @@ function Profile(){
   const navigation = useNavigation();
 
   const UpdateHandler = () =>{
-    navigation.navigate('Update Profile'
+    navigation.navigate("Update Profile"
     //,{
     //discussionID : id,
     //discussionBody:body,
     //}
-     
-     );
+    );
    };
   
 
@@ -101,7 +100,7 @@ function Profile(){
       </Pressable>
       
       
-       <Pressable   
+       {/* <Pressable   
         onPress={()=>{console.log('Pressed ya babe the text')}}
         style={styles.viewStyling}>
         <Feather 
@@ -110,7 +109,7 @@ function Profile(){
           color="black"   
        />
           <Text style={styles.textStyling} > Settings  </Text>
-      </Pressable>
+      </Pressable> */}
 
      <Pressable   
         onPress={()=>{console.log('Pressed ya babe the text')}}
