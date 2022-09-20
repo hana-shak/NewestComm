@@ -15,6 +15,8 @@ import { FontAwesome5,
          MaterialCommunityIcons
            } from '@expo/vector-icons';
 import  CustomModal  from '../componenets/Basics/CustomModal';
+
+
 function DiscussionsList({id, body, image, anonymous, postNumber}){
     
     const navigation = useNavigation();
@@ -33,9 +35,14 @@ function DiscussionsList({id, body, image, anonymous, postNumber}){
 
     // Maybe later I can link it to navigation!! for topic_id and auth_id data
     const replyHandler = () =>{
-         setModalVisible(true)
-     
+      navigation.navigate('Reply Post'
+        //,{
+        // discussionID : id,
+        // discussionBody:body,
+        //}
+      );
     };
+
 
     const specialMsgHandler = () =>{
          return(
@@ -154,7 +161,7 @@ function DiscussionsList({id, body, image, anonymous, postNumber}){
 <View>
     
     {/* // Modal Testing and new try */}  
-<View style={styles.screen}>
+{/* <View style={styles.screen}>
 {modalVisible ?  
    <Modal
         presentationStyle='fullScreen'
@@ -187,7 +194,7 @@ function DiscussionsList({id, body, image, anonymous, postNumber}){
      </Modal>  :
      null 
     }
- </View>   
+ </View>    */}
  {/* Modal Code Finished */}
 
  </View>

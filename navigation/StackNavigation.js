@@ -8,6 +8,7 @@ import SingleSubCategory from '../screens/SingleSubCategoryScreen';
 import DiscussionView from '../screens/DiscussionView';
 import EditTopic from '../screens/EditTopicScreen';
 import UpdateProfile from '../screens/UpdateProfile';
+import ReplyPost from '../screens/ReplyPost';
 
 const Stack = createNativeStackNavigator();
 
@@ -67,6 +68,10 @@ function StackNavigation(){
      component={UpdateProfile}
 />
 
+<Stack.Screen 
+    name = 'Reply Post'
+    component={ReplyPost}
+/>
 
 {/* <CategoryScreen />  */}
 </Stack.Navigator>

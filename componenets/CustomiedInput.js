@@ -1,6 +1,6 @@
 import { View, Text, TextInput, StyleSheet} from 'react-native';
 
-function CustomInput({label,configProps,style }){
+function CustomInput({label,configProps,style}){
 
     const InputFieldStyle = [styles.InputField]; 
     if(configProps && configProps.multiline ){

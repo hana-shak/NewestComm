@@ -104,7 +104,7 @@ function StartDiscussion({route, navigation}){
         <Text style={styles.formTitle}>Start A New Discussion</Text>
         <View style={styles.container}>
 
-    <View style={styles.containerDropdown}>
+        <View style={styles.containerDropdown}>
             <View   
                style={styles.container}>
                <View style={styles.textarrowContainer}>
@@ -133,7 +133,7 @@ function StartDiscussion({route, navigation}){
             </View>
             
           
-    </View>
+        </View>
              <CustomInput 
               label="Title"
               configProps={{

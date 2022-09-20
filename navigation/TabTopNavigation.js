@@ -1,7 +1,7 @@
 import { StyleSheet , Dimensions} from 'react-native';
 import { createMaterialTopTabNavigator , RouteConfigs} from '@react-navigation/material-top-tabs';
 import Profile from '../screens/ProfileScreen';
-import Search from '../screens/SearchScreen';
+import Location from '../screens/LocationScreen';
 import StartDiscussion from '../screens/NewDiscussionScreen';
 
 import StackNavigation from './StackNavigation'
@@ -13,7 +13,7 @@ function MyTabs() {
     <Tab.Navigator style={styles.Tab}>
       <Tab.Screen name="Home" component={StackNavigation}  />
       <Tab.Screen name="Profile" component={Profile} />
-      <Tab.Screen name="Search" component={Search} />
+      <Tab.Screen name="Location" component={Location} />
       <Tab.Screen name="Discussion" component={StartDiscussion} />
     </Tab.Navigator>
   );

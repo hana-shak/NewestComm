@@ -6,7 +6,7 @@ import { useQuery} from "react-query";
 
 
 
-function Search(){
+function Location(){
   
     return(
       <View>
@@ -17,4 +17,4 @@ function Search(){
   
 };
 
-export default Search;
+export default Location;
